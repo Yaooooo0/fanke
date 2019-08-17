@@ -453,24 +453,30 @@
         ele.scrollTop="0"
     }
 
-setTimeout(function () {
-    let hour = document.querySelector(".h")
-    let min = document.querySelector(".m")
-    let sec = document.querySelector(".s")
-    let now = new Date()
-    let offset = Math.floor((future.getTime() - now.getTime()) / 1000)
+function djs(shiName,fenName,miaoName){
+    let hours = document.querySelector(shiName)
+    let minutes = document.querySelector(fenName)
+    let second = document.querySelector(miaoName)
 
-    let hourNum = Math.floor(offset % (60 * 60 * 24) / (60 * 60))
-    hour.innerText = hourNum
+    let futureTime = new Date("2019/8/18 6:0:0")
+    setInterval(update,1000)
 
-    let minNum = Math.floor((offset % (60 * 60 * 24)) % (60 * 60) / 60)
-    min.innerText = minNum
+    function update () {
+        let nowTime = new Date()
+        let offset = Math.floor((futureTime.getTime()-nowTime.getTime())/1000)
 
-    let secNum = Math.floor((offset % (60 * 60 * 24)) % (60 * 60) % 60)
-    sec.iinnerText = secNum
-    },1000)
-
+        //小时
+        let hoursNum = Math.floor(offset%(60*60*24)/(60*60))
+        hours.innerHTML = hoursNum
+        //分钟
+        let minutesNum = Math.floor(offset%(60*60*24)%(60*60)/60)
+        minutes.innerHTML = minutesNum
+        //秒
+        let secondNum = Math.floor(offset%(60*60*24)%(60*60)%60)
+        second.innerHTML = secondNum
     }
+}
+    djs(".h",".m",".s")
     ///倒计时
     //
     // setTimeout(function () {
